@@ -221,6 +221,7 @@ ${url}`;
       const header = new Headers();
       header.append('Content-Type', 'application/vnd.apple.mpegurl');
 
+      console.log(fakePlaylist);
       return new Response(fakePlaylist, { status: 200, headers: header });
     }
   }
