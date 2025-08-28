@@ -21,21 +21,21 @@ let resolutions = {
     bandwidth: 3430584,
     fps: 60
   },
-  // '1080p30': {
-  //   res: '1920x1080',
-  //   bandwidth: 5145876,
-  //   fps: 30
-  // },
-  // '1080p60': {
-  //   res: '1920x1080',
-  //   bandwidth: 8438581,
-  //   fps: 60
-  // },
-  // chunked: {
-  //   res: '1920x1080',
-  //   bandwidth: 5145876,
-  //   fps: 30
-  // }
+  '1080p30': {
+    res: '1920x1080',
+    bandwidth: 5145876,
+    fps: 30
+  },
+  '1080p60': {
+    res: '1920x1080',
+    bandwidth: 8438581,
+    fps: 60
+  },
+  chunked: {
+    res: '1920x1080',
+    bandwidth: 5145876,
+    fps: 30
+  }
 };
 
 async function fetchTwitchDataGQL(vodID) {
@@ -226,5 +226,6 @@ ${url}`;
     }
   }
 
+  console.log(response);
   return response;
 };
