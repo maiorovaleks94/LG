@@ -103,7 +103,7 @@ async function isValidQuality(url) {
 const oldFetch = self.fetch;
 
 self.fetch = async function (input, opt) {
-  debugger;
+  console.log("IN");
   let url;
   if (input instanceof Request) {
     url = input.url;
@@ -111,6 +111,7 @@ self.fetch = async function (input, opt) {
     url = input.toString();
   } else {
     // Fallback to oldFetch
+    console.log("Fallback to oldFetch");
     return oldFetch(input, opt);
   }
 
@@ -128,6 +129,7 @@ self.fetch = async function (input, opt) {
 
   // Block Sentry requests
   if (url.includes('ingest.sentry.io')) {
+    console.log("ingest.sentry.io");
     return;
   }
 
@@ -152,6 +154,7 @@ self.fetch = async function (input, opt) {
         vodData.broadcastType &&
         vodData.broadcastType.toLowerCase() !== 'archive'
       ) {
+        console.log("vodData && vodData.broadcastType");
         return response;
       }
 
@@ -174,7 +177,7 @@ self.fetch = async function (input, opt) {
       const paths = currentURL.pathname.split('/');
       const vodSpecialID =
         paths[
-          paths.findIndex((element) => element.includes('storyboards')) - 1
+        paths.findIndex((element) => element.includes('storyboards')) - 1
         ];
 
       let fakePlaylist = `#EXTM3U
@@ -227,6 +230,6 @@ ${url}`;
     }
   }
 
-  console.log(response);
+  console.log('OUT');
   return response;
 };
