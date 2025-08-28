@@ -103,6 +103,7 @@ async function isValidQuality(url) {
 const oldFetch = self.fetch;
 
 self.fetch = async function (input, opt) {
+  debugger;
   let url;
   if (input instanceof Request) {
     url = input.url;
