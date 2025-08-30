@@ -70,6 +70,7 @@ function createServingID() {
 
 async function isValidQuality(url) {
   const response = await fetch(url);
+  console.log('isValidQuality', url, response);
 
   if (response.ok) {
     const data = await response.text();
@@ -103,7 +104,6 @@ async function isValidQuality(url) {
 const oldFetch = self.fetch;
 
 self.fetch = async function (input, opt) {
-  console.log("IN");
   let url;
   if (input instanceof Request) {
     url = input.url;
@@ -111,7 +111,6 @@ self.fetch = async function (input, opt) {
     url = input.toString();
   } else {
     // Fallback to oldFetch
-    console.log("Fallback to oldFetch");
     return oldFetch(input, opt);
   }
 
@@ -129,7 +128,6 @@ self.fetch = async function (input, opt) {
 
   // Block Sentry requests
   if (url.includes('ingest.sentry.io')) {
-    console.log("ingest.sentry.io");
     return;
   }
 
@@ -154,7 +152,6 @@ self.fetch = async function (input, opt) {
         vodData.broadcastType &&
         vodData.broadcastType.toLowerCase() !== 'archive'
       ) {
-        console.log("vodData && vodData.broadcastType");
         return response;
       }
 
@@ -225,11 +222,9 @@ ${url}`;
       const header = new Headers();
       header.append('Content-Type', 'application/vnd.apple.mpegurl');
 
-      console.log(fakePlaylist);
       return new Response(fakePlaylist, { status: 200, headers: header });
     }
   }
 
-  console.log('OUT');
   return response;
 };
