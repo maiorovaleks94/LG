@@ -45,7 +45,7 @@ async function fetchTwitchDataGQL(vodID) {
       query:
         'query { video(id: "' +
         vodID +
-        '") { broadcastType, createdAt, seekPreviewsURL, owner { login }, playbackAccessToken(params: {platform: "web", playerType: "site", maximum_resolution: "SD"}) { authorization { isForbidden } } }}'
+        '") { broadcastType, createdAt, seekPreviewsURL, owner { login }, playbackAccessToken(params: {platform: "web", playerType: "site"}) { authorization { isForbidden } } }}'
     }),
     headers: {
       'Client-Id': 'kimne78kx3ncx6brgo4mv6wki5h1ko',
